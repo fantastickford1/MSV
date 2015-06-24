@@ -2,19 +2,36 @@
  *
  * @author Karlos
  */
- import matriz.*;
+import matriz.*;
+import java.lang.Math;
 
 public class MainClass {
     public static void main(String[] args) {
 
       Matrix j = new Matrix("iris.txt");
 
-      String[] vextor = new String[j.size];
-      //float[] fltvextor = new float[];
+      String[] vector = new String[j.size];
 
-      vextor = j.getAllLines(j.size);
 
-      System.out.vextor.toString(float[] fltvextor);
+      vector = j.getAllLines(j.size);
+////////////////////////////////////////////////////////////
+      float[][] h = new float[j.size][j.size];
+      float[][] hKernel = new float[j.size][j.size];
+      float[] xi = new float[5];
+      float[] xj = new float[5];
+      for (int i=0; i < j.size ; i++ ) {
+        for (int g=0; g < j.size ; g++ ) {
+          xi = j.convrtAndSpltStrngToFlt(vector[i],",");
+          xj = j.convrtAndSpltStrngToFlt(vector[g],",");
+          float multXX = j.multVector(xi,xj);
+          h[i][g] =  (xi[4]*xj[4])*(multXX);
+          hKernel[i][g] =  (xi[4]*xj[4])* (float)Math.pow((multXX + 1),2);
+        }
+      }
+///////////////////////////////////////////////////////////////////
+      j.fileWriter("datos.txt", h);
+      j.fileWriter("Kernel.txt", hKernel);
+
     }
 
 }
