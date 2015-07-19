@@ -35,16 +35,16 @@ public class Matrix extends AnalizaFile{
       }else return 0;
       return sum;
     }
-//metodo para convertir un string a flotante con split
-    public float[] convrtAndSpltStrngToFlt(String stringto, String spl){
-      String[] x = stringto.split(spl);
-      float[] v = new float[x.length];
-      for (int i=0 ; i < x.length ; i++ ) {
-        float number = Float.parseFloat(x[i]);
-        v[i] = number;
-      }
-      return v;
-    }
+    //metodo para convertir un string a flotante con split
+        public float[] convrtAndSpltStrngToFlt(String stringto, String spl){
+          String[] x = stringto.split(spl);
+          float[] v = new float[x.length];
+          for (int i=0 ; i < x.length ; i++ ) {
+            float number = Float.parseFloat(x[i]);
+            v[i] = number;
+          }
+          return v;
+        }
 
 //metodo para escribir o crear un txt (arreglar)
 public void fileWriter(String arch_name, float[][] arrayfloat){
