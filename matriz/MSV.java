@@ -1,6 +1,6 @@
 /*
  * Subclase de AnalizaFile
- * --
+ * 
  *
  */
 
@@ -10,16 +10,16 @@ import java.io.*;
  *
  * @author Karlos
  */
-public class Matrix extends AnalizaFile{
+public class MSV extends AnalizaFile{
 
     public int size;
 //constructor por default
-    public Matrix(){
+    public MSV(){
         super();
         this.size = 0;
     }
 //constructor que recibe un nombre del archivo y usa el constructor de su SuperClase
-    public Matrix(String txt){
+    public MSV(String txt){
     super(txt);
     this.size = this.getLines();
     }

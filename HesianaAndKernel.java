@@ -5,10 +5,10 @@
 import matriz.*;
 import java.lang.Math;
 
-public class MainClass {
+public class HesianaAndKernel {
     public static void main(String[] args) {
 
-      Matrix j = new Matrix("iris.txt");
+      MSV j = new MSV("iris.txt");
 
       String[] vector = new String[j.size];
 
