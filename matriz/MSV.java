@@ -46,6 +46,19 @@ public class MSV extends AnalizaFile{
           return v;
         }
 
+    public double multVectorDou(double[] firtVextor, double[] secondVextor){
+      double sum = 0;
+      if(firtVextor.length == secondVextor.length){
+        int tm = firtVextor.length;
+        for (int aux = 0;aux < (tm - 1) ; aux ++ ) {
+          double mult = firtVextor[aux] * secondVextor[aux];
+          sum = sum + mult;
+        }
+      }else return 0;
+      return sum;
+    }
+
+
 //metodo para escribir o crear un txt (arreglar)
 public void fileWriter(String arch_name, float[][] arrayfloat){
     File new_archivo = new File(arch_name);
