@@ -1,5 +1,6 @@
 package matriz;
 import java.io.*;
+import java.lang.Math;
 
 public class TestSH extends AnalizaFile{
 
@@ -36,7 +37,8 @@ public class TestSH extends AnalizaFile{
 
     for(int i=0; i< sizeTest; i++){
       for(int j=0; j< sizeIris; j++){
-        sum= sum+ alpha[i]*ys[i]*(mult.multVectorDou(getVector(j,x),getVector(i,xs))+1);
+        double hp = mult.multVectorDou(getVector(j,x),getVector(i,xs))
+        sum= sum+ alpha[i]*ys[i]*((float)Math.pow(hp+1),2);
       }
       result[i]=sum;
       sum=0;
@@ -72,9 +74,9 @@ public class TestSH extends AnalizaFile{
           cp= Double.parseDouble(a[c3]);
           b[c3]= cp;
         }
-        
+
         temporal[c][c2]= b[c2];
-      }   
+      }
     }
 
     return temporal;
@@ -107,7 +109,7 @@ public class TestSH extends AnalizaFile{
           cp1= Double.parseDouble(a1[z]);
           b1[z]= cp1;
         }
-        
+
         tempflotant[x][y]= b1[y];
       }
     }
@@ -121,7 +123,7 @@ public class TestSH extends AnalizaFile{
     for(int cont2=0; cont2< 4; cont2++){
        temp4[cont2]= bidimensional[f][cont2];
     }
-    
+
     return temp4;
   }
 
@@ -137,11 +139,3 @@ public class TestSH extends AnalizaFile{
 
 
 }
-
-
-
-
-
-
-
-
