@@ -2,7 +2,7 @@ import matriz.*;
 
 public class PruebaH{
   public static void main(String[] args) {
-  	TestSH hola= new TestSH("alpha.txt", "xs.txt", "ys.txt", "xiris.txt");
+  	TestSH hola= new TestSH("alpha.txt", "xs.txt", "yiris.txt", "xiris.txt");
 
   	double[] aux = hola.DecisionFunction();
 

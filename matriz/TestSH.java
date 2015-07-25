@@ -6,10 +6,10 @@ public class TestSH extends AnalizaFile{
 
   private double[] alpha; //alfa obtenida en matlab
   private double[][] xs; //x obtenida de los datos de prueba
-  private double[] ys; //Y de los datos de prueba de tamaño 20
+  private double[] y; //Y de los datos de prueba de tamaño 20
   private double[][] x; //x obtenida de los datos de iris
-  private final int sizeIris = 80; //tamaño de datos de iris (80)
-  private final int sizeTest = 20; //tamaño de datos de prueba iris(20)
+  private final int ns = 3; //tamaño de datos de iris (80)
+  private final int ms = 20; //tamaño de datos de prueba iris(20)
   private double sum; //sumatoria de la funcion
   private double[] result = new double[20];//almacenamieto de total de sumarias repetida 20 veces
 
@@ -17,28 +17,56 @@ public class TestSH extends AnalizaFile{
   public TestSH(){
     this.alpha = new double[0];
     this.xs = new double[0][0];
-    this.ys = new double[0];
+    this.y = new double[0];
     this.x = new double[0][0];
     this.sum = 0.0;
   }
 
-  public TestSH(String alphaFile, String xsFile, String ysFile, String xFile){
+  public TestSH(String alphaFile, String xsFile, String yFile, String xFile){
     super();
     this.alpha = getAlpha(alphaFile);
     this.xs = getXs(xsFile);
-    this.ys = getYs(ysFile);
+    this.y = getYIris(yFile);
     this.x = getXIris(xFile);
     this.sum = 0.0;
   }
 
   public double[] DecisionFunction(){
-
     MSV mult = new MSV();
 
-    for(int i=0; i< sizeTest; i++){
-      for(int j=0; j< sizeIris; j++){
-        double hp = mult.multVectorDou(getVector(j,x),getVector(i,xs))
-        sum= sum+ alpha[i]*ys[i]*((float)Math.pow(hp+1),2);
+    double[][] trnX = new double[3][4];
+    double[] trnY = new double[3];
+    double[] alphas = new double[3];
+
+      double[] er = getVector(23,x);
+      double[] at = getVector(24,x);
+      double[] yu = getVector(47,x);
+
+      for (int vlm = 0 ; vlm < 4 ; vlm++ ) {
+        trnX[0][vlm] = er[vlm];
+        trnX[1][vlm] = at[vlm];
+        trnX[2][vlm] = yu[vlm];
+      }
+      for (int cs = 0; cs < 3 ;cs++ ) {
+        for (int kl = 0; kl < 4 ; kl++ ) {
+          System.out.print(trnX[cs][kl] + "\t");
+        }
+        System.out.println();
+      }
+      System.out.println();
+
+      trnY[0] = getPosition(23,y);
+      trnY[1] = getPosition(24,y);
+      trnY[2] = getPosition(47,y);
+
+      alphas[0] = getPosition(23,alpha);
+      alphas[1] = getPosition(24,alpha);
+      alphas[2] = getPosition(47,alpha);
+
+    for(int i=0; i< ms; i++){
+      for(int j=0; j< ns; j++){
+        double hp = mult.multVectorDou(getVector(j,trnX),getVector(i,xs));
+        sum= sum+ alphas[j]*trnY[j]*((float)Math.pow((hp+1),2));
       }
       result[i]=sum;
       sum=0;
@@ -82,7 +110,7 @@ public class TestSH extends AnalizaFile{
     return temporal;
   }
 
-  private double[] getYs(String ysFile){
+  private double[] getYIris(String ysFile){
     this.setFileName(ysFile);
     int num1 = getLines();
     String [] temp = getAllLines(num1);
@@ -123,6 +151,13 @@ public class TestSH extends AnalizaFile{
     for(int cont2=0; cont2< 4; cont2++){
        temp4[cont2]= bidimensional[f][cont2];
     }
+
+    return temp4;
+  }
+
+  private double getPosition(int f, double[] bidimensional){
+    double temp4;
+    temp4 = bidimensional[f];
 
     return temp4;
   }
