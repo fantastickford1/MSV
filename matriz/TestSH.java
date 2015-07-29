@@ -8,6 +8,7 @@ public class TestSH extends AnalizaFile{
   private double[][] xs; //x obtenida de los datos de prueba
   private double[] y; //Y de los datos de prueba de tamaño 20
   private double[][] x; //x obtenida de los datos de iris
+  private double[] yPrueba;
   private final int ns = 3; //tamaño de datos de iris (80)
   private final int ms = 20; //tamaño de datos de prueba iris(20)
   private double sum; //sumatoria de la funcion
@@ -19,15 +20,17 @@ public class TestSH extends AnalizaFile{
     this.xs = new double[0][0];
     this.y = new double[0];
     this.x = new double[0][0];
+    this.yPrueba= new double[0];
     this.sum = 0.0;
   }
 
-  public TestSH(String alphaFile, String xsFile, String yFile, String xFile){
+  public TestSH(String alphaFile, String xsFile, String yFile, String xFile, String yPruebaFile){
     super();
     this.alpha = getAlpha(alphaFile);
     this.xs = getXs(xsFile);
     this.y = getYIris(yFile);
     this.x = getXIris(xFile);
+    this.yPrueba= getYIris(yPruebaFile);
     this.sum = 0.0;
   }
 
@@ -72,6 +75,31 @@ public class TestSH extends AnalizaFile{
       sum=0;
     }
     return result;
+  }
+
+  public void matrizConfusion(double[] suma){
+    int a=0,b=0,c=0,d=0;
+    
+    for(int i=0;i<20;i++){
+      System.out.println(suma[i]);
+      if(suma[i]>=0){
+        if(yPrueba[4] == 1){
+          a++;
+        }else{
+          c++;
+        }
+      }else{
+        if(yPrueba[4] == 1){
+          b++;
+        }else{
+          d++;
+        }
+      }
+    }
+    System.out.println("El valor de a es : "+ a);
+    System.out.println("El valor de b es : "+ b);
+    System.out.println("El valor de c es : "+ c);
+    System.out.println("El valor de d es : "+ d);
   }
 
   private double[] getAlpha(String alphaFile){
