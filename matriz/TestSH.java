@@ -69,7 +69,7 @@ public class TestSH extends AnalizaFile{
     for(int i=0; i< ms; i++){
       for(int j=0; j< ns; j++){
         double hp = mult.multVectorDou(getVector(j,trnX),getVector(i,xs));
-        sum= sum+ alphas[j]*trnY[j]*((float)Math.pow((hp+1),2));
+        sum= sum+ alphas[j]*trnY[j]*(hp);
       }
       result[i]=sum;
       sum=0;
@@ -79,17 +79,17 @@ public class TestSH extends AnalizaFile{
 
   public void matrizConfusion(double[] suma){
     int a=0,b=0,c=0,d=0;
-    
+
     for(int i=0;i<20;i++){
       System.out.println(suma[i]);
       if(suma[i]>=0){
-        if(yPrueba[4] == 1){
+        if(yPrueba[i] == 1){
           a++;
         }else{
           c++;
         }
       }else{
-        if(yPrueba[4] == 1){
+        if(yPrueba[i] == 1){
           b++;
         }else{
           d++;
